@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vendors/angular.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <title>Polaris NG Intro</title>
+</head>
+<body ng-app="myApp">
+    <h1>Polaris NG Intro</h1>
+    <div ng-controller="MovieController as mc">
+        My favorite Movie is: <input placeholder="favorite movie" type="text" ng-model="mc.movieIn">
+        <button ng-click="mc.addMovie()">Set As Fav</button>
+        <p>{{ mc.favoriteMovies }}</p>
+    </div>
+</body>
+</html>
