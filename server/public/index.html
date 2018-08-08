@@ -11,9 +11,24 @@
 <body ng-app="myApp">
     <h1>Polaris NG Intro</h1>
     <div ng-controller="MovieController as mc">
-        My favorite Movie is: <input placeholder="favorite movie" type="text" ng-model="mc.movieIn">
-        <button ng-click="mc.addMovie()">Set As Fav</button>
-        <p>{{ mc.favoriteMovies }}</p>
+        <div>
+            <button ng-click="mc.addInterface( true )">Add</button>
+            <button ng-click="mc.addInterface( false )">View</button>
+        </div>
+        <div ng-show="mc.showAdd">
+            <h2>Add New Movie:</h2>
+            <input placeholder="title" type="text" ng-model="mc.movieIn">
+            <input placeholder="image URL" type="text" ng-model="mc.imageIn">
+            <button ng-click="mc.addMovie()">Set As Fav</button>
+            <!-- other stuff -->
+        </div>
+        <div ng-hide="mc.showAdd">
+            <h2>Favorite Movies:</h2>
+            <div ng-repeat="movie in mc.favoriteMovies" ng-click="mc.movieClick( $index )">
+                <p>{{ movie.title }}</p>
+                <img ng-src="{{ movie.imageUrl }}">
+            </div>
+        </div> 
     </div>
 </body>
 </html>
