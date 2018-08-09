@@ -1,6 +1,6 @@
 let myApp = angular.module( 'myApp', [] );
 
-myApp.controller( 'MovieController', function(){
+myApp.controller( 'MovieController', function( $http ){
     // "this" is the Controller itself, we're holding it in a variable callev "vm"
     let vm = this;
     vm.favoriteMovies = [];
@@ -10,7 +10,6 @@ myApp.controller( 'MovieController', function(){
         vm.showAdd = show;
     } // end funk
 
-    
     vm.addMovie = function(){
         console.log( 'in addMovie', vm.movieIn, vm.imageIn );
         // add new movie for favorites array
@@ -18,7 +17,18 @@ myApp.controller( 'MovieController', function(){
             title: vm.movieIn,
             imageUrl: vm.imageIn
         } // end newMovie
-        vm.favoriteMovies.push( newMovie );
+        // $http call with data via POST
+        $http({
+            method: 'POST',
+            url: '/movies',
+            data: newMovie
+        }).then( function( response ){
+            console.log( 'back from POST with:', response.data );
+            vm.getMovies();
+        }).catch( function( err ){
+            console.log( 'error posting:', err );
+        }) // end $http
+
         // empty inputs
         vm.movieIn = '';
         vm.imageIn = '';
@@ -27,6 +37,15 @@ myApp.controller( 'MovieController', function(){
 
     vm.getMovies = function(){
         console.log( 'in getMovies' );
+        $http({
+            method: 'GET',
+            url: '/movies'
+        }).then( function( response ){
+            console.log( 'back from server with:', response );
+            vm.favoriteMovies = response.data;
+        }).catch( function( err ){
+            console.log( 'nope' );
+        }) //end $http
     } // end getMovies
 
     // server side, eventually

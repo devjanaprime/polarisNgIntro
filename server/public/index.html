@@ -17,9 +17,12 @@
         </div>
         <div ng-show="mc.showAdd">
             <h2>Add New Movie:</h2>
-            <input placeholder="title" type="text" ng-model="mc.movieIn">
-            <input placeholder="image URL" type="text" ng-model="mc.imageIn">
-            <button ng-click="mc.addMovie()">Set As Fav</button>
+            <form ng-submit="mc.addMovie()">
+                <input placeholder="title" type="text" ng-model="mc.movieIn">
+                <input placeholder="image URL" type="text" ng-model="mc.imageIn">
+                <button>Set As Fav</button>
+            </form>
+            
             <!-- other stuff -->
         </div>
         <div ng-hide="mc.showAdd">

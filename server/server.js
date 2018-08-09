@@ -6,6 +6,10 @@ const movies = require( './modules/routes/movies' );
 
 // uses
 app.use( express.static( 'server/public' ) );
+// JQuery 
+app.use( bodyParser.urlencoded( { extended: true } ) );
+// Angular $http
+app.use( bodyParser.json() );
 app.use( '/movies', movies );
 
 // globals
