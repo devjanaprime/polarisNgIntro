@@ -10,6 +10,7 @@ myApp.controller( 'MovieController', function(){
         vm.showAdd = show;
     } // end funk
 
+    
     vm.addMovie = function(){
         console.log( 'in addMovie', vm.movieIn, vm.imageIn );
         // add new movie for favorites array
@@ -24,10 +25,17 @@ myApp.controller( 'MovieController', function(){
         console.log( 'favorite movies thus far:', vm.favoriteMovies );
     } // end funk
 
+    vm.getMovies = function(){
+        console.log( 'in getMovies' );
+    } // end getMovies
 
+    // server side, eventually
     vm.movieClick = function( index ){
         console.log( 'click on a movie', index );
         // removing movie at this index
         vm.favoriteMovies.splice( index, 1 );
     } // end funk
+
+    // init
+    vm.getMovies();
 }); // end controller

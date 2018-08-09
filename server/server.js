@@ -2,9 +2,11 @@
 const express = require( 'express' );
 const app = express();
 const bodyParser = require( 'body-parser' );
+const movies = require( './modules/routes/movies' );
 
 // uses
 app.use( express.static( 'server/public' ) );
+app.use( '/movies', movies );
 
 // globals
 const port = process.env.PORT || 5000;
